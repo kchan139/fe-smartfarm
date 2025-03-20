@@ -1,0 +1,19 @@
+.room-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.room-tab {
+    padding: 12px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.room-tab.active {
+    background-color: #4CAF50;
+    color: white;
+}

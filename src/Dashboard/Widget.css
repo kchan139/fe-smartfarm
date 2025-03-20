@@ -1,0 +1,27 @@
+.widget {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin: 15px;
+}
+
+.metric-widget {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.metric-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.metric-value {
+    font-size: 50px;
+    font-weight: bold;
+    color: #4CAF50;
+}
