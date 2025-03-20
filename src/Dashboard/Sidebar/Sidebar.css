@@ -1,0 +1,56 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo-text span {
+    color: #4CAF50;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+    background-color: #f0f9f0;
+}
+
+.menu-item.active {
+    background-color: #e6f7e6;
+}
+
+.menu-item i {
+    font-size: 20px;
+    color: #333;
+}
+
+.menu-item.active i {
+    color: #4CAF50;
+}
+
+.menu-text {
+    font-size: 16px;
+    color: #333;
+}
+
+.menu-item.active .menu-text {
+    color: #4CAF50;
+    font-weight: 500;
+}
