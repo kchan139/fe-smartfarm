@@ -1,16 +1,20 @@
 import "./Sidebar.css";
+import Logo from '../../../assets/logo/logotree2.svg';
+import LogoName from '../../../assets/logo/logotree3.svg';
 
 function Sidebar () {
     return (
         <>
             <div class="logo">
-                <svg width="40" height="40" viewBox="0 0 40 40">
+                {/* <svg width="40" height="40" viewBox="0 0 40 40">
                     <rect x="10" y="27" width="20" height="3" fill="#4CAF50" />
                     <circle cx="20" cy="15" r="10" fill="#4CAF50" opacity="0.7" />
                     <circle cx="20" cy="15" r="5" fill="#4CAF50" />
                     <rect x="18" y="25" width="4" height="10" fill="#4CAF50" />
-                </svg>
-                <div class="logo-text">TECH <span>TREE</span></div>
+                </svg> */}
+                <img src={Logo} width="40%" height="40%" alt="icon" />
+                <img src={LogoName} width="70%" alt="icon" />
+                {/* <div class="logo-text">TECH <span>TREE</span></div> */}
             </div>
 
             <div class="menu-item active">
