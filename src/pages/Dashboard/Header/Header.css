@@ -2,13 +2,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 0px 0px 0px 15px;
 }
 
 .page-title {
-    font-size: 24px;
+    color: #000;
+    font-family: Quicksand;
+    font-size: 26px;
+    font-style: normal;
     font-weight: bold;
-    color: #333;
+    line-height: normal;
 }
 
 .search-bar {

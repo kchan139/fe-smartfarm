@@ -6,7 +6,8 @@
 }
 
 .logo img {
-    height: 40px;
+    max-width: 100%;
+    height: auto;
 }
 
 .logo-text {
@@ -42,15 +43,23 @@
 }
 
 .menu-item.active i {
-    color: #4CAF50;
+    color: #02C685;
 }
 
 .menu-text {
-    font-size: 16px;
-    color: #333;
+    color: #000;
+    font-family: Quicksand;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 .menu-item.active .menu-text {
-    color: #4CAF50;
-    font-weight: 500;
+    color: #02C685;
+    font-family: Quicksand;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }

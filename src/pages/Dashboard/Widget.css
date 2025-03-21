@@ -15,13 +15,25 @@
 }
 
 .metric-title {
-    font-size: 18px;
-    font-weight: 500;
-    color: #333;
+    color: #000;
+    font-family: Quicksand;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
 
 .metric-value {
-    font-size: 50px;
+    /* font-size: 50px;
     font-weight: bold;
-    color: #4CAF50;
+    color: #4CAF50; */
+    background: linear-gradient(180deg, #02C685 0%, #BBEA54 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* text-align: center; */
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
