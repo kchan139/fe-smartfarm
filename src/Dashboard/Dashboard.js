@@ -11,15 +11,42 @@ function Dashboard() {
     useEffect(() => {
         setInterval(() => {            
             //* get api value here
-            const humidFeed = 5;
-            setHumid(humidFeed); 
             const tempFeed = 10;
             setTemp(tempFeed);
-            const lightFeed = 15;
-            setLight(lightFeed);
         }, 2000);
     }, [])
 
+    useEffect(() => {
+        setInterval(() => {            
+            fetch('https://dadn-242-backend.vercel.app/getCurrentStat?Sensor_ID=LS01').then((response) => { ///get data for light sensor (ID: LS01)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            }).then((data) => {
+                console.log(data);
+                setLight(data.Measured_Stat); // Store the fetched data in state
+            }).catch((e) => {
+                console.error(e) // Catch and display any errors
+            }); 
+        }, 2000);
+    }, [])
+
+    useEffect(() => {
+        setInterval(() => {            
+            fetch('https://dadn-242-backend.vercel.app/getCurrentStat?Sensor_ID=SMS01').then((response) => { ///get data for soil moisture sensor (ID: SMS01)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            }).then((data) => {
+                console.log(data);
+                setHumid(data.Measured_Stat); // Store the fetched data in state
+            }).catch((e) => {
+                console.error(e) // Catch and display any errors
+            }); 
+        }, 2000);
+    }, [])
 
     return (
         <>
