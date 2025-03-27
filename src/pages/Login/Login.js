@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './Login.css';
+import { useNavigate } from 'react-router-dom';
 import LogoTree2 from '../../assets/logo/logotree2.svg';
 import LogoTree3 from '../../assets/logo/logotree3.svg';
-import { useNavigate } from 'react-router-dom';
+import { login } from '../../utils/auth';
+import './Login.css';
 
 function Login() {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ function Login() {
 
       console.log('Login successful');
       // Navigate to dashboard on successful login
+      login();
       navigate('/dashboard');
     }
     catch (err) {
@@ -40,7 +42,7 @@ function Login() {
       <header>
         <nav>
           {/* Replace anchor tags with onClick handlers */}
-          <a onClick={() => navigate('/')} style={{cursor: 'pointer'}}>Home</a>
+          <a onClick={() => navigate('/home')} style={{cursor: 'pointer'}}>Home</a>
           <a onClick={() => navigate('/login')} className="sign-in-link" style={{cursor: 'pointer'}}>Sign in</a>
         </nav>
       </header>
