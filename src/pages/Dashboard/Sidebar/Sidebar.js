@@ -1,7 +1,8 @@
-import "./Sidebar.css";
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../../../utils/auth';
 import Logo from '../../../assets/logo/logotree2.svg';
 import LogoName from '../../../assets/logo/logotree3.svg';
-import { useNavigate } from 'react-router-dom';
+import "./Sidebar.css";
 
 function Sidebar () {
     const navigate = useNavigate();
@@ -57,7 +58,11 @@ function Sidebar () {
             </div>
 
             {/* Add a logout option that navigates to login */}
-            <div className="menu-item" onClick={() => navigate('/login')} style={{ marginTop: 'auto' }}>
+            <div className="menu-item" onClick={ () =>  {
+                    logout();
+                    navigate('/login')
+                }} 
+                style={{ marginTop: 'auto' }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" stroke="#333" strokeWidth="2" />
                     <path d="M16 17l5-5-5-5" stroke="#333" strokeWidth="2" />
