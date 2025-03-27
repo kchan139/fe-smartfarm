@@ -5,10 +5,34 @@ import LogoTree3 from '../../assets/logo/logotree3.svg';
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
   
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    try {
+      const response = await fetch(
+        'https://dadn-242-backend.vercel.app/getAuthentication?User_ID=farmer1&Password=123456'
+      );
+
+      if (!response.ok) throw new Error('Login failed');
+
+      console.log('Login successful');
+      alert('Login successful!');
+
+
+    }
+    catch (err) {
+      setError(err.message || 'Invalid credentials. Please try again.')
+    }
+  }
 
   return (
     <div className="login-page">
@@ -25,10 +49,17 @@ function Login() {
             <h1>Welcome Back!</h1>
             <p>Please login to your account to continue.</p>
             
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="username">Username</label>
-                <input type="text" id="username" name="username" />
+                <input 
+                  type="text" 
+                  id="username" 
+                  name="username" 
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
               </div>
               
               <div className="form-group">
@@ -38,6 +69,9 @@ function Login() {
                     type={showPassword ? "text" : "password"} 
                     id="password" 
                     name="password" 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                   <button 
                     type="button" 
