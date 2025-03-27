@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './Login.css';
 import LogoTree2 from '../../assets/logo/logotree2.svg';
 import LogoTree3 from '../../assets/logo/logotree3.svg';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -19,15 +21,14 @@ function Login() {
 
     try {
       const response = await fetch(
-        'https://dadn-242-backend.vercel.app/getAuthentication?User_ID=farmer1&Password=123456'
+        `https://dadn-242-backend.vercel.app/getAuthentication?User_ID=${username}&Password=${password}`
       );
 
       if (!response.ok) throw new Error('Login failed');
 
       console.log('Login successful');
-      alert('Login successful!');
-
-
+      // Navigate to dashboard on successful login
+      navigate('/dashboard');
     }
     catch (err) {
       setError(err.message || 'Invalid credentials. Please try again.')
@@ -38,8 +39,9 @@ function Login() {
     <div className="login-page">
       <header>
         <nav>
-          <a href="#">Home</a>
-          <a href="#" className="sign-in-link">Sign in</a>
+          {/* Replace anchor tags with onClick handlers */}
+          <a onClick={() => navigate('/')} style={{cursor: 'pointer'}}>Home</a>
+          <a onClick={() => navigate('/login')} className="sign-in-link" style={{cursor: 'pointer'}}>Sign in</a>
         </nav>
       </header>
       
@@ -48,6 +50,9 @@ function Login() {
           <div className="login-form">
             <h1>Welcome Back!</h1>
             <p>Please login to your account to continue.</p>
+            
+            {/* Show error message if there is one */}
+            {error && <div className="error-message">{error}</div>}
             
             <form onSubmit={handleSubmit}>
               <div className="form-group">
@@ -96,7 +101,7 @@ function Login() {
                 <img src={LogoTree2} alt="Tech Tree Logo" width="100" height="100" />
             </div>
             <div className="brand-name">
-                <img src={LogoTree3} alt="Tech Tree" className= "brand-text"/>
+                <img src={LogoTree3} alt="Tech Tree" className="brand-text"/>
             </div>
           </div>
         </div>
