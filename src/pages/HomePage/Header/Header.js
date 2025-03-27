@@ -1,12 +1,15 @@
 import "./Header.css";
+import Logo from '../../../assets/logo/logotree2.svg'
+import LogoName from '../../../assets/logo/logotree3.svg'
 
 function Header() {
     return (
         <>
             <div class="header">
                 <div class="logo">
-                    <img src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/03/anh-meme-hai-1.jpg" alt="Tech Tree Logo"/>
-                    <div class="logo-text">SMART FARM</div>
+                    <img src={Logo} alt="Tech Tree Logo"/>
+                    {/* <div class="logo-text">SMART FARM</div> */}
+                    <img src={LogoName} alt="SMART FARM"/>
                 </div>
                 
                 <nav class="nav-bar">
