@@ -49,13 +49,11 @@ function Dashboard() {
     }, [])
 
     return (
-        <>
-                <div class="dashboard">
-                    <Widget value={humid} unit="%" lowest="0" highest="100" >Humidity</Widget>
-                    <Widget value={temp} unit="°C" lowest="0" highest="50" >Temerature</Widget>
-                    <Widget value={light} unit=" Lux" lowest="0" highest="500" >Light</Widget>
-                </div>
-        </>
+        <div class="dashboard">
+            <Widget value={humid} unit="%" lowest="0" highest="100" >Humidity</Widget>
+            <Widget value={temp} unit="°C" lowest="0" highest="50" >Temerature</Widget>
+            <Widget value={light} unit=" Lux" lowest="0" highest="500" >Light</Widget>
+        </div>
     )
 }
 

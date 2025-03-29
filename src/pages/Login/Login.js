@@ -42,7 +42,7 @@ function Login() {
       <header>
         <nav>
           {/* Replace anchor tags with onClick handlers */}
-          <a onClick={() => navigate('/home')} style={{cursor: 'pointer'}}>Home</a>
+          {/* <a onClick={() => navigate('/home')} style={{cursor: 'pointer'}}>Home</a> */}
           <a onClick={() => navigate('/login')} className="sign-in-link" style={{cursor: 'pointer'}}>Sign in</a>
         </nav>
       </header>
