@@ -3,6 +3,7 @@ import Header from './Header/Header';
 import RoomTab from './RoomTab/RoomTab';
 import Dashboard from './Dashboard';
 import "./DashboardPage.css"
+import Control from './Control/Control';
 
 function DashboardPage() {
     return (
@@ -15,6 +16,7 @@ function DashboardPage() {
                     <Header/>
                     <RoomTab/>
                     <Dashboard/>
+                    <Control/>
                 </maincontent>
             </body>
         </>
