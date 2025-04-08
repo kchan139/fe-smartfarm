@@ -38,7 +38,7 @@ function Dashboard() {
                 return response.json();
             }).then((data) => {
                 console.log(data);
-                setSoilMoisture(data.Measured_Stat); // Store the fetched data in state
+                setHumid(data.Measured_Stat); // Store the fetched data in state
             }).catch((e) => {
                 console.error(e) // Catch and display any errors
             }); 
