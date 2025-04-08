@@ -4,8 +4,20 @@ import RoomTab from './RoomTab/RoomTab';
 import Dashboard from './Dashboard';
 import "./DashboardPage.css"
 import Control from './Control/Control';
+import { useNavigate } from 'react-router-dom';
+import { isAuthenticated } from '../../utils/auth';
+import { useEffect } from 'react';
 
 function DashboardPage() {
+  const navigate = useNavigate();
+  useEffect(()=>{
+    const checkAuthentication=()=>{
+      if (!isAuthenticated()){
+        navigate('/');
+      }
+    }
+    checkAuthentication();
+  })
     return (
         <>
             <body>

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LogoTree2 from '../../assets/logo/logotree2.svg';
 import LogoTree3 from '../../assets/logo/logotree3.svg';
-import { login } from '../../utils/auth';
+import { isAuthenticated, login } from '../../utils/auth';
 import './Login.css';
 
 function Login() {
@@ -15,6 +15,15 @@ function Login() {
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
+
+  useEffect(()=>{
+    const checkAuthentication=()=>{
+      if (isAuthenticated()){
+        navigate('/dashboard');
+      }
+    }
+    checkAuthentication();
+  })
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -30,9 +30,6 @@ function Dashboard() {
                 console.error(e) // Catch and display any errors
             }); 
         }, 2000);
-    }, [])
-
-    useEffect(() => {
         setInterval(() => {            
             fetch('https://dadn-242-backend.vercel.app/getCurrentStat?Sensor_ID=SMS01').then((response) => { ///get data for soil moisture sensor (ID: SMS01)
                 if (!response.ok) {
@@ -41,7 +38,7 @@ function Dashboard() {
                 return response.json();
             }).then((data) => {
                 console.log(data);
-                setHumid(data.Measured_Stat); // Store the fetched data in state
+                setSoilMoisture(data.Measured_Stat); // Store the fetched data in state
             }).catch((e) => {
                 console.error(e) // Catch and display any errors
             }); 
