@@ -4,8 +4,17 @@ import Widget from './Widget.js'
 
 
 function Dashboard() {
-    const [soilMoisture, setSoilMoisture] = useState(0);
+    const [humid, setHumid] = useState(0);
+    // const [temp, setTemp] = useState(0);
     const [light, setLight] = useState(0);
+
+    // useEffect(() => {
+    //     setInterval(() => {            
+    //         //* get api value here
+    //         const tempFeed = 10;
+    //         setTemp(tempFeed);
+    //     }, 2000);
+    // }, [])
 
     useEffect(() => {
         setInterval(() => {            
@@ -29,7 +38,7 @@ function Dashboard() {
                 return response.json();
             }).then((data) => {
                 console.log(data);
-                setSoilMoisture(data.Measured_Stat); // Store the fetched data in state
+                setHumid(data.Measured_Stat); // Store the fetched data in state
             }).catch((e) => {
                 console.error(e) // Catch and display any errors
             }); 
@@ -38,8 +47,9 @@ function Dashboard() {
 
     return (
         <div class="dashboard">
-            <Widget value={soilMoisture} unit="%" lowest="0" highest="100" >Soil Moisture</Widget>
-            <Widget value={light} unit=" Lux" lowest="0" highest="500" >Light</Widget>
+            <Widget value={humid} unit="%" lowest="0" highest="100" >Humidity</Widget>
+            {/* <Widget value={temp} unit="°C" lowest="0" highest="50" >Temerature</Widget> */}
+            <Widget value={light} unit=" Lux" lowest="0" highest="100" >Light</Widget>
         </div>
     )
 }
