@@ -15,7 +15,7 @@
     height: 100%;
     background: linear-gradient(225deg, #02C685 0%, #BBEA54 100%);
     border-radius: 10px;
-    width: 80%;
+    /* width: 80%; */
     position: relative;
 }
 
@@ -29,11 +29,12 @@
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
+    cursor: pointer;
 }
 
-.status-slider .slider-thumb {
+/* .status-slider .slider-thumb {
     left: 50%;
-}
+} */
 
 .slider-labels {
     display: flex;
@@ -54,4 +55,9 @@
     width: 1px;
     height: 10px;
     background-color: #ccc;
+}
+
+.slider-container.disabled {
+    pointer-events: none; 
+    cursor: not-allowed;
 }

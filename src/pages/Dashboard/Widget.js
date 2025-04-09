@@ -14,7 +14,7 @@ function Widget({children, value, unit, lowest, highest}) {
             <div class="widget metric-widget">
                 <div class="metric-title">{children}</div>
                 <div class="metric-value">{value}{unit}</div>
-                <Slider lowest={lowest} highest={highest} value={width} unit={unit}></Slider>
+                <Slider lowest={lowest} highest={highest} value={value} unit={unit}></Slider>
             </div>
         </>
     )
