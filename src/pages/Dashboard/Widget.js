@@ -3,6 +3,7 @@ import Slider from './Slider';
 import { useEffect, useState } from 'react';
 
 function Widget({children, value, unit, lowest, highest}) {
+    // eslint-disable-next-line
     const [width, setWidth] = useState("0%");
     useEffect(() => {
         const rate = (value - lowest)/(highest - lowest)*100;
