@@ -25,9 +25,9 @@ function DashboardPage() {
                     <Sidebar/>
                 </sidebar>
                 <maincontent>
-                    <Header/>
-                    {/* <RoomTab/> */}
-                    <Dashboard/>
+                    {/* <Header/>
+                    <RoomTab/>
+                    <Dashboard/> */}
                     <Control/>
                 </maincontent>
             </body>
