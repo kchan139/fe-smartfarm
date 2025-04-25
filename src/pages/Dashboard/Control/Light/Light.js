@@ -5,18 +5,25 @@ import Slider from '../../Slider';
 function Light() {
     const [isActive, setIsActive] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [sliderValue, setSliderValue] = useState(50);
+    const [sliderValue, setSliderValue] = useState(0);
 
     useEffect(() => {
         fetch('https://dadn-242-backend.vercel.app/getSetting?Output_ID=L01')
             .then(res => res.json())
             .then(data => {
                 setIsActive(data.Activation === "on");
-                if (data.Threshold !== undefined) {
-                    setSliderValue(parseInt(data.Threshold));
+                if (data.Limit !== undefined) {
+                    setSliderValue(parseInt(data.Limit));
                 }
                 setIsLoading(false);
             });
+        setInterval(()=>{
+            fetch('https://dadn-242-backend.vercel.app/getSetting?Output_ID=L01')
+            .then(res => res.json())
+            .then(data => {
+                setIsActive(data.Activation === "on");
+            });
+        },2000)
     }, []);
 
     const handleToggle = async () => {
@@ -87,7 +94,7 @@ function Light() {
             </div>
             <Slider
                 lowest={0}
-                highest={100}
+                highest={90}
                 value={sliderValue}
                 unit="Lux"
                 onChange={setSliderValue}

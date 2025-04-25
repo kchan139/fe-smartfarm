@@ -1,6 +1,6 @@
 import Sidebar from './Sidebar/Sidebar';
 import Header from './Header/Header';
-import RoomTab from './RoomTab/RoomTab';
+// import RoomTab from './RoomTab/RoomTab';
 import Dashboard from './Dashboard';
 import "./DashboardPage.css"
 import Control from './Control/Control';
@@ -26,7 +26,7 @@ function DashboardPage() {
                 </sidebar>
                 <maincontent>
                     <Header/>
-                    <RoomTab/>
+                    {/* <RoomTab/> */}
                     <Dashboard/>
                     <Control/>
                 </maincontent>
