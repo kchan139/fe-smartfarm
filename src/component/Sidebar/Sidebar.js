@@ -25,7 +25,7 @@ function Sidebar() {
         <div className="menu-text">Dashboard</div>
       </div>
 
-      <div className="menu-item" onClick={() => navigate('/device-configuration')}>
+      <div className="menu-item" onClick={() => navigate('/device-log')}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M12 4L12 20" stroke="#333" strokeWidth="2" />
           <path d="M12 4C14 7 17 8 20 8" stroke="#333" strokeWidth="2" />
@@ -33,28 +33,7 @@ function Sidebar() {
           <path d="M12 12C14 15 17 16 20 16" stroke="#333" strokeWidth="2" />
           <path d="M12 12C10 15 7 16 4 16" stroke="#333" strokeWidth="2" />
         </svg>
-        <div className="menu-text">Device Configuration</div>
-      </div>
-
-      <div className="menu-item" onClick={() => navigate('/data-statistic')}>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M4 6H20" stroke="#333" strokeWidth="2" />
-          <path d="M4 12H20" stroke="#333" strokeWidth="2" />
-          <path d="M4 18H20" stroke="#333" strokeWidth="2" />
-          <circle cx="8" cy="6" r="2" fill="#333" />
-          <circle cx="14" cy="12" r="2" fill="#333" />
-          <circle cx="8" cy="18" r="2" fill="#333" />
-        </svg>
-        <div className="menu-text">Data Statistic</div>
-      </div>
-
-      <div className="menu-item" onClick={() => navigate('/support')}>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke="#333" strokeWidth="2" />
-          <path d="M12 7V13" stroke="#333" strokeWidth="2" />
-          <circle cx="12" cy="16" r="1" fill="#333" />
-        </svg>
-        <div className="menu-text">Support</div>
+        <div className="menu-text">Device Log</div>
       </div>
 
       <div className="menu-item" onClick={() => { logout(); navigate('/login'); }} style={{ marginTop: 'auto' }}>

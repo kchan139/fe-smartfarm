@@ -2,7 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 0px 0px 15px;
+    padding: 0px 0px 0px 15px; /* Adjust padding as needed */
+    width: 100%; /* Ensure header takes full width of its container */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .page-title {
@@ -12,6 +14,8 @@
     font-style: normal;
     font-weight: bold;
     line-height: normal;
+    /* Add margin to the right if needed to push the search bar */
+    margin-right: 20px; /* Example spacing */
 }
 
 .search-bar {
@@ -20,7 +24,9 @@
     background-color: white;
     border-radius: 50px;
     padding: 8px 15px;
-    width: 300px;
+    /* Remove fixed width and allow it to grow */
+    flex-grow: 1;
+    max-width: 400px; /* Optional: Set a max-width for larger screens */
 }
 
 .search-bar input {
@@ -40,6 +46,8 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    /* Add margin to the left if needed for spacing */
+    margin-left: 20px; /* Example spacing */
 }
 
 .notification-icon {
