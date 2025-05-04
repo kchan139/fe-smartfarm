@@ -1,5 +1,5 @@
-import Sidebar from './Sidebar/Sidebar';
-import Header from './Header/Header';
+import Sidebar from '../../component/Sidebar/Sidebar';
+import Header from '../../component/Header/Header';
 // import RoomTab from './RoomTab/RoomTab';
 import Dashboard from './Dashboard';
 import "./DashboardPage.css"
