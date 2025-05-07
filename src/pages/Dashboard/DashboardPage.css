@@ -11,6 +11,7 @@ sidebar {
 maincontent {
   flex: 1;
   padding: 20px;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   gap: 20px;
