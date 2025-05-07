@@ -10,8 +10,7 @@ function Chart({type, updateInterval, title}){
     "8-10 AM", "10-12 PM", "12-2 PM", "2-4 PM", 
     "4-6 PM", "6-8 PM", "8-10 PM", "10-12 AM"
   ];
-  
-  // Initialize the histogram
+   // Initialize the histogram
   const initHistogram = () => {
     if (!histogramRef.current) return;
     
@@ -104,6 +103,7 @@ function Chart({type, updateInterval, title}){
     return () => {
       clearInterval(intervalId);
     };
+    // eslint-disable-next-line
   }, [initialized, updateInterval]);
     return (
         <>
