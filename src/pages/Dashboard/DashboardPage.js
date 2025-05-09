@@ -21,9 +21,7 @@ function DashboardPage() {
     return (
         <>
             <body>
-                <sidebar>
-                    <Sidebar/>
-                </sidebar>
+                <Sidebar/>
                 <maincontent>
                     <Header/>
                     {/* <RoomTab/> */}

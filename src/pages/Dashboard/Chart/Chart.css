@@ -16,7 +16,7 @@ h1 {
 
 .histogram {
     display: flex;
-    height: 300px;
+    height: 350px;
     margin-top: 50px;
     position: relative;
     padding-left: 50px;
@@ -49,6 +49,7 @@ h1 {
     margin-top: 10px;
     font-size: 12px;
     color: #555;
+    justify-self: center;
 }
 
 .value-label {
@@ -62,13 +63,15 @@ h1 {
     position: absolute;
     left: 0;
     top: 0;
-    bottom: 0;
+    bottom: 40px;
     width: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding-right: 10px;
     border-right: 1px solid #ddd;
+    /* This ensures that the y-axis itself ends exactly at the x-axis line */
+    
 }
 
 .y-axis-label {
@@ -77,11 +80,12 @@ h1 {
     color: #777;
 }
 
+/* Modified x-axis to align properly with the y-axis */
 .x-axis {
     position: absolute;
-    left: 50px;
+    left: 40px;
     right: 0;
-    bottom: 40px;
+    bottom: 40px; /* Keep at 40px to match the space for labels */
     height: 1px;
     background-color: #ddd;
 }
@@ -115,4 +119,25 @@ button {
 
 button:hover {
     background-color: #3e8e41;
+}
+
+.date-picker-container {
+    display: flex;
+    align-items: center;
+}
+
+.date-picker {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.date-picker:focus {
+    outline: none;
+    border-color: #02C685;
+    box-shadow: 0 0 5px rgba(2, 198, 133, 0.3);
 }
