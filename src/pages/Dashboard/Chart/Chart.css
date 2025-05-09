@@ -120,3 +120,24 @@ button {
 button:hover {
     background-color: #3e8e41;
 }
+
+.date-picker-container {
+    display: flex;
+    align-items: center;
+}
+
+.date-picker {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.date-picker:focus {
+    outline: none;
+    border-color: #02C685;
+    box-shadow: 0 0 5px rgba(2, 198, 133, 0.3);
+}

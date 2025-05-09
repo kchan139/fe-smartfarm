@@ -2,8 +2,9 @@ import "./Chart.css"
 import { useState, useEffect, useRef } from 'react';
 
 function Chart({type, updateInterval, title, sensor, percent}){
-    const histogramRef = useRef(null);
+  const histogramRef = useRef(null);
   const [initialized, setInitialized] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('2025-04-23'); // default date
   
   const timePeriods = [
     "12-2 AM", "2-4 AM", "4-6 AM", "6-8 AM", 
@@ -64,6 +65,33 @@ function Chart({type, updateInterval, title, sensor, percent}){
     });
   };
   
+  // Handle date change
+  const handleDateChange = (e) => {
+    setSelectedDate(e.target.value);
+  };
+  
+  const fetchData = () => {
+        fetch(`https://dadn-242-backend.vercel.app/webAction/getDailyStat?Sensor_ID=${sensor}&date=${selectedDate}`)
+        .then((response) => { ///get data for light sensor (ID: LS01)
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        }).then((data) => {
+            const fixedData = data.map(function(num){
+
+              return num === 0 ? num : num.toFixed(2);
+            })
+            console.log(data);
+            if (initialized) {
+                updateHistogram(fixedData);
+            } // Store the fetched data in state
+        }).catch((e) => {
+            console.error(e) // Catch and display any errors
+        }); 
+      
+    }
+
   // Initialize chart on component mount
   useEffect(() => {
     initHistogram();
@@ -71,40 +99,30 @@ function Chart({type, updateInterval, title, sensor, percent}){
     // Initial update
     if (initialized) {
       updateHistogram([0,0,0,0,0,0,0,0,0,0,0,0]); // init will all 0s
+      fetchData()
     }
     
     // Set up interval for updates
-    const intervalId = setInterval(() => {
-        fetch(`https://dadn-242-backend.vercel.app/webAction/getDailyStat?Sensor_ID=${sensor}&date=2025-04-23`).then((response) => { ///get data for light sensor (ID: LS01)
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    }).then((data) => {
-                        const fixedData = data.map(function(num){
-
-                          return num === 0 ? num : num.toFixed(2);
-                        })
-                        console.log(data);
-                        if (initialized) {
-                            updateHistogram(fixedData);
-                        } // Store the fetched data in state
-                    }).catch((e) => {
-                        console.error(e) // Catch and display any errors
-                    }); 
-      
-    }, updateInterval);
+    // const intervalId = setInterval(fetchData, updateInterval);
     
     // Clean up on unmount
-    return () => {
-      clearInterval(intervalId);
-    };
+    // return () => {
+    //   clearInterval(intervalId);
+    // };
     // eslint-disable-next-line
-  }, [initialized, updateInterval]);
+  }, [initialized, selectedDate]);
     return (
         <>
             <div class = {type} >
                 <h1>{title}</h1>
+                <div className="date-picker-container">
+                  <input 
+                    type="date" 
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    className="date-picker"
+                  />
+                </div>
                 <div class="histogram" ref={histogramRef}>
                     <div class="y-axis">
                         <span class="y-axis-label">{100/percent}</span>
