@@ -1,7 +1,7 @@
 import "./Chart.css"
 import { useState, useEffect, useRef } from 'react';
 
-function Chart({type, updateInterval, title}){
+function Chart({type, updateInterval, title, sensor, percent}){
     const histogramRef = useRef(null);
   const [initialized, setInitialized] = useState(false);
   
@@ -58,29 +58,10 @@ function Chart({type, updateInterval, title}){
       
       // Animate the height change
       setTimeout(() => {
-        bar.style.height = value + '%';
+        bar.style.height = `calc(${value*percent}% - 40px)`;
         valueLabel.textContent = value;
       }, index * 100);
     });
-  };
-  
-  // Generate random data
-  const generateRandomData = () => {
-    // Night hours have less light
-    return [
-      Math.floor(Math.random() * 5),  // 12-2 AM
-      Math.floor(Math.random() * 5),  // 2-4 AM
-      Math.floor(Math.random() * 10 + 1),  // 4-6 AM
-      Math.floor(Math.random() * 40 + 10),  // 6-8 AM
-      Math.floor(Math.random() * 50 + 20),  // 8-10 AM
-      Math.floor(Math.random() * 40 + 50),  // 10-12 PM
-      Math.floor(Math.random() * 40 + 50),  // 12-2 PM
-      Math.floor(Math.random() * 40 + 40),  // 2-4 PM
-      Math.floor(Math.random() * 50 + 20),  // 4-6 PM
-      Math.floor(Math.random() * 40 + 5),   // 6-8 PM
-      Math.floor(Math.random() * 10),       // 8-10 PM
-      Math.floor(Math.random() * 5)         // 10-12 AM
-    ];
   };
   
   // Initialize chart on component mount
@@ -89,14 +70,29 @@ function Chart({type, updateInterval, title}){
     
     // Initial update
     if (initialized) {
-      updateHistogram(generateRandomData());
+      updateHistogram([0,0,0,0,0,0,0,0,0,0,0,0]); // init will all 0s
     }
     
     // Set up interval for updates
     const intervalId = setInterval(() => {
-      if (initialized) {
-        updateHistogram(generateRandomData());
-      }
+        fetch(`https://dadn-242-backend.vercel.app/webAction/getDailyStat?Sensor_ID=${sensor}&date=2025-04-23`).then((response) => { ///get data for light sensor (ID: LS01)
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    }).then((data) => {
+                        const fixedData = data.map(function(num){
+
+                          return num === 0 ? num : num.toFixed(2);
+                        })
+                        console.log(data);
+                        if (initialized) {
+                            updateHistogram(fixedData);
+                        } // Store the fetched data in state
+                    }).catch((e) => {
+                        console.error(e) // Catch and display any errors
+                    }); 
+      
     }, updateInterval);
     
     // Clean up on unmount
@@ -111,11 +107,11 @@ function Chart({type, updateInterval, title}){
                 <h1>{title}</h1>
                 <div class="histogram" ref={histogramRef}>
                     <div class="y-axis">
-                        <span class="y-axis-label">100</span>
-                        <span class="y-axis-label">80</span>
-                        <span class="y-axis-label">60</span>
-                        <span class="y-axis-label">40</span>
-                        <span class="y-axis-label">20</span>
+                        <span class="y-axis-label">{100/percent}</span>
+                        <span class="y-axis-label">{80/percent}</span>
+                        <span class="y-axis-label">{60/percent}</span>
+                        <span class="y-axis-label">{40/percent}</span>
+                        <span class="y-axis-label">{20/percent}</span>
                         <span class="y-axis-label">0</span>
                     </div>
                     <div class="x-axis"></div>

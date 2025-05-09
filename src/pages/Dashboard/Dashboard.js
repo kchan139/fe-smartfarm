@@ -46,13 +46,14 @@ function Dashboard() {
         }, 2000);
     }, [])
     let timeInterval = 2000;
-    
+    let percentMois = 100;
+    let percentLight = 1;
     return (
         <div class="dashboard" display="inline-block">
            
-            <Chart type = "histogram-container moisture-chart" updateInterval={timeInterval} title = "Moisture Chart"></Chart>
-            <Chart type = "histogram-container light-chart" updateInterval={timeInterval} title = "Light Chart"></Chart>
-            <Widget type = "widget metric-widget soil-moisture" value={humid} unit="%" lowest="0" highest="100" >Soil Moisture</Widget>
+            <Chart type = "histogram-container moisture-chart" updateInterval={timeInterval} title = "Moisture Chart" sensor="SMS01" percent={percentMois}></Chart>
+            <Chart type = "histogram-container light-chart" updateInterval={timeInterval} title = "Light Chart" sensor="LS01" percent={percentLight}></Chart>
+            <Widget type = "widget metric-widget soil-moisture" value={humid} unit="%" lowest="0" highest="100">Soil Moisture</Widget>
     
             {/* <Widget value={temp} unit="°C" lowest="0" highest="50" >Temerature</Widget> */}   
             <Widget type = "widget metric-widget light" value={light} unit=" Lux" lowest="0" highest="100" >Light</Widget>
