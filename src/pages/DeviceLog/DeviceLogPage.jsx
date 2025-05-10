@@ -13,28 +13,21 @@ function DeviceLogPage() {
   const [showEntries, setShowEntries] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-
   const logsPerPage = showEntries;
   const totalPages = Math.ceil(logData.length / logsPerPage);
-
   const filteredLogs = logData.filter(log =>
     Object.values(log).some(value =>
       String(value).toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
-
   const currentLogs = filteredLogs.slice(
     (currentPage - 1) * logsPerPage,
     currentPage * logsPerPage
   );
-
   const deviceMapping = {
     'WP01': 'Water Pump 1',
     'L01': 'Light 1',
-    // Add other output IDs and their names here
   };
-
-
 
   useEffect(() => {
     const checkAuthentication = () => {
@@ -50,28 +43,22 @@ function DeviceLogPage() {
       try {
         const outputIds = Object.keys(deviceMapping);
         let allLogs = [];
-
         for (const id of outputIds) {
           const response = await fetch(`https://dadn-242-backend.vercel.app/getActionLog?Output_ID=${id}`);
           if (!response.ok) {
             throw new Error(`Failed to fetch logs for ${id}`);
           }
           const data = await response.json();
-          
-          // Map the fetched data to the desired structure
           const mappedLogs = data.map(log => ({
             deviceName: deviceMapping[log.Output_ID] || log.Output_ID,
             status: log.Action === 'enable' ? 'on' : 'off',
             timestamp: log.Action_Time,
             outputId: log.Output_ID,
-            originalLog: log // Keep original data if needed
+            originalLog: log
           }));
           allLogs = [...allLogs, ...mappedLogs];
         }
-
-        // Sort logs by timestamp, newest first
         allLogs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
         setLogData(allLogs);
         setLoading(false);
       } catch (err) {
@@ -79,12 +66,10 @@ function DeviceLogPage() {
         setLoading(false);
       }
     };
-
     fetchLogData();
     const interval = setInterval(fetchLogData, 5000);
 
     return () => clearInterval(interval);
-    // eslint-disable-next-line
   }, [navigate]);
 
   const handleShowEntriesChange = (event) => {
@@ -101,13 +86,12 @@ function DeviceLogPage() {
     setCurrentPage(page);
   };
 
-
-
   return (
     <>
       <div className="device-config-page">
         <Sidebar />
         <div className="main-content">
+          {/* Pass the pageTitle prop here */}
           <Header pageTitle="Device Log" />
           <div className="device-config-container">
             <div className="table-controls">
@@ -136,7 +120,7 @@ function DeviceLogPage() {
             <div className="device-table">
               <table>
                 <thead>
-                  <tr>
+                   <tr>
                     <th>Device Name</th>
                     <th>Status</th>
                     <th>Timestamp</th>
@@ -163,7 +147,7 @@ function DeviceLogPage() {
                             <span className={log.status === 'on' ? 'status-active' : 'status-inactive'}>
                               {log.status ? log.status.toUpperCase() : 'N/A'}
                             </span>
-                          </td>
+                           </td>
                           <td>{log.timestamp ? new Date(log.timestamp).toLocaleString() : 'N/A'}</td>
                         </tr>
                     ))
