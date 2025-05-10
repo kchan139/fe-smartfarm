@@ -70,6 +70,7 @@ function DeviceLogPage() {
     const interval = setInterval(fetchLogData, 5000);
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line
   }, [navigate]);
 
   const handleShowEntriesChange = (event) => {
