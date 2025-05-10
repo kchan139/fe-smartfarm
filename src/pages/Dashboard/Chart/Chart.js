@@ -1,7 +1,7 @@
 import "./Chart.css"
 import { useState, useEffect, useRef } from 'react';
 
-function Chart({type, updateInterval, title, sensor, percent}){
+function Chart({type, title, sensor}){
   const histogramRef = useRef(null);
   const [initialized, setInitialized] = useState(false);
   const [selectedDate, setSelectedDate] = useState('2025-04-23'); // default date
@@ -59,7 +59,7 @@ function Chart({type, updateInterval, title, sensor, percent}){
       
       // Animate the height change
       setTimeout(() => {
-        bar.style.height = `calc(${value*percent}% - 40px)`;
+        bar.style.height = `calc(${value}% - 40px)`;
         valueLabel.textContent = value;
       }, index * 100);
     });
@@ -72,7 +72,7 @@ function Chart({type, updateInterval, title, sensor, percent}){
   
   const fetchData = () => {
         fetch(`https://dadn-242-backend.vercel.app/webAction/getDailyStat?Sensor_ID=${sensor}&date=${selectedDate}`)
-        .then((response) => { ///get data for light sensor (ID: LS01)
+        .then((response) => { ///get data for light sensor (ID: LS01 (light sensor), SMS01 (soil moist sensor))
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -125,11 +125,11 @@ function Chart({type, updateInterval, title, sensor, percent}){
                 </div>
                 <div class="histogram" ref={histogramRef}>
                     <div class="y-axis">
-                        <span class="y-axis-label">{100/percent}</span>
-                        <span class="y-axis-label">{80/percent}</span>
-                        <span class="y-axis-label">{60/percent}</span>
-                        <span class="y-axis-label">{40/percent}</span>
-                        <span class="y-axis-label">{20/percent}</span>
+                        <span class="y-axis-label">100</span>
+                        <span class="y-axis-label">80</span>
+                        <span class="y-axis-label">60</span>
+                        <span class="y-axis-label">40</span>
+                        <span class="y-axis-label">20</span>
                         <span class="y-axis-label">0</span>
                     </div>
                     <div class="x-axis"></div>
